@@ -1,0 +1,174 @@
+{
+  "business": {
+    "name": "Dezire Decore - Decoration & Event Planner",
+    "legal_name": "Dezire Decore Decoration & Event Planner",
+    "category": "Event Planner / Balloon Decoration & Party Stylist",
+    "rating": 4.9,
+    "review_count": 87,
+    "price_range": "₹₹",
+    "google_maps_url": "https://www.google.com/maps/place/Dezire+Decore+-+Decoration+%26+Event+Planner/@28.6676114,77.4610269,15z/data=!3m1!5s0x390cf219b78afe93:0x1b75769c5a96f7c4!4m10!1m2!2m1!1sballoon+decoration+near+me!3m6!1s0x390cf3f0faf988bb:0xb8de77d788648f0a!8m2!3d28.6676137!4d77.4800782!15sChpiYWxsb29uIGRlY29yYXRpb24gbmVhciBtZSIDkAEBWhwiGmJhbGxvb24gZGVjb3JhdGlvbiBuZWFyIG1lkgENZXZlbnRfcGxhbm5lcpoBRENpOURRVWxSUVVOdlpFTm9kSGxqUmpsdlQyeENjVkpGT0RGT1YzZDBWV3RLVkZOV1VqSlRWVlpwVVhwQ1RsTklZeEFC4AEA-gEECAAQQg!16s%2Fg%2F11ydsvkggp?entry=ttu",
+    "place_id": "0x390cf3f0faf988bb:0xb8de77d788648f0a",
+    "cid": "13321151609355177738",
+    "coordinates": {
+      "latitude": 28.6676137,
+      "longitude": 77.4800782
+    },
+    "contact": {
+      "primary_phone": "+91 82797 31933",
+      "secondary_phone": "+91 95553 13027",
+      "whatsapp": "+918279731933",
+      "email": "deziredecore.events@gmail.com"
+    },
+    "location": {
+      "address_line1": "Second Floor, Krishna Tanushree Kunj, Plot R1",
+      "landmark": "Near Mahagunpuram, Raispur",
+      "city": "Ghaziabad",
+      "state": "Uttar Pradesh",
+      "pincode": "201002",
+      "branch_office": "F-39, Arora Shoppers Park, Shakti Khand II, Indirapuram, Ghaziabad, UP 201014",
+      "service_areas": [
+        "Mahagunpuram",
+        "Indirapuram",
+        "Crossings Republik",
+        "Raj Nagar Extension",
+        "Siddharth Vihar",
+        "Vaishali & Vasundhara",
+        "Govindpuram",
+        "Kavi Nagar & Shastri Nagar",
+        "Noida & Greater Noida West",
+        "Delhi NCR"
+      ]
+    },
+    "operating_hours": {
+      "monday": "08:00 AM - 10:00 PM",
+      "tuesday": "08:00 AM - 10:00 PM",
+      "wednesday": "08:00 AM - 10:00 PM",
+      "thursday": "08:00 AM - 10:00 PM",
+      "friday": "08:00 AM - 10:00 PM",
+      "saturday": "08:00 AM - 10:30 PM",
+      "sunday": "08:00 AM - 10:30 PM",
+      "special_services": "Midnight surprises & express 2-hour doorstep setups available upon request"
+    },
+    "usps": [
+      "Zero Wall-Damage Guarantee (safe stands & high-grade removable tapes)",
+      "2-Hour Express Setup available in Ghaziabad",
+      "Customized 3D Themes & Color Palettes",
+      "Transparent Pricing with No Hidden Surcharges",
+      "Over 500+ successful events delivered"
+    ],
+    "services": [
+      {
+        "id": "birthday-decor",
+        "title": "Birthday Balloon Styling",
+        "starting_price": 999,
+        "description": "Custom balloon arches, neon signage, organic garlands, character cutouts for kids and adults.",
+        "popular_themes": ["Pastel Dream", "Jungle Safari", "Superhero / Avengers", "Frozen Princess", "Boss Baby", "Rose Gold Chic"]
+      },
+      {
+        "id": "anniversary-decor",
+        "title": "Romantic & Anniversary Setups",
+        "starting_price": 1499,
+        "description": "Cabana and teepee setups, red heart foil arches, candle paths, fairy lights, and ceiling helium balloons.",
+        "popular_themes": ["Boho Cabana", "Red Velvet Heart Arch", "Midnight Fairy Canopy", "Golden Candlelight Walkway"]
+      },
+      {
+        "id": "baby-shower-decor",
+        "title": "Baby Shower & Welcome Baby",
+        "starting_price": 1999,
+        "description": "Dreamy pastel backdrops, golden sequin shimmer walls, giant teddy bears, cloud balloons, and marquee letters.",
+        "popular_themes": ["Oh Baby Pastel Cloud", "Teddy Bear Picnic", "Blue & Pink Gender Reveal", "Golden Stork Arrival"]
+      },
+      {
+        "id": "wedding-haldi-decor",
+        "title": "Haldi, Mehndi & Ring Ceremony",
+        "starting_price": 2999,
+        "description": "Vibrant marigold hangings, brass urli setups, handcrafted floral rings, traditional drapes and LED lighting.",
+        "popular_themes": ["Yellow Sunshine Haldi", "Bohemian Mehndi Swing", "Floral Ring Engagement Backdrop", "Traditional Rajasthani Drapes"]
+      },
+      {
+        "id": "corporate-stage-decor",
+        "title": "Corporate Events & Grand Openings",
+        "starting_price": 3499,
+        "description": "Brand-colored balloon entry arches, ribbon cutting setups, backdrop stages, cold pyro, and conference stages.",
+        "popular_themes": ["Store Grand Opening Arch", "Annual Milestone Gala", "Product Launch Stage", "Festival Celebrations"]
+      },
+      {
+        "id": "car-boot-decor",
+        "title": "Car Boot & Surprise Delivery",
+        "starting_price": 1299,
+        "description": "Surprise your loved ones right in the trunk of your car with balloons, fairy lights, message banners, and flowers.",
+        "popular_themes": ["Trunk Surprise Romantic", "Birthday Car Boot Burst", "Proposal Trunk Setup"]
+      }
+    ],
+    "pricing_packages": [
+      {
+        "name": "Silver Starter",
+        "price": 999,
+        "popular": false,
+        "features": [
+          "100 Metallic/Pastel Balloons",
+          "Happy Birthday / Occasion Foil Banner",
+          "Ribbons & Glue Dots (Zero Wall Damage)",
+          "1-Hour Quick Setup",
+          "Ideal for small living room celebration"
+        ]
+      },
+      {
+        "name": "Gold Premium",
+        "price": 2499,
+        "popular": true,
+        "features": [
+          "200-250 Chrome & Pastel Balloons",
+          "Circular Metal Ring or Square Frame Arch",
+          "Custom Neon Signage (Rent included)",
+          "Foil Age Numbers or Name Initials",
+          "Fairy Light String Accents",
+          "Dedicated Decorator at Doorstep"
+        ]
+      },
+      {
+        "name": "Platinum Royal",
+        "price": 4999,
+        "popular": false,
+        "features": [
+          "Full Grand Backdrop Setup (Sequin/Fabric)",
+          "Organic Balloon Garland / Triple Arch",
+          "Neon Signage + 2 Cutout Stands / Teddy",
+          "Cake Cylinder Pedestals (Set of 3)",
+          "Cold Pyro Sparklers (2 shots)",
+          "LED Spotlights & Photo Booth Area"
+        ]
+      }
+    ],
+    "testimonials": [
+      {
+        "name": "Pooja Sharma",
+        "location": "Mahagunpuram, Ghaziabad",
+        "rating": 5,
+        "review": "Booked Dezire Decore for my daughter's 5th birthday. The pastel balloon arch was breathtaking! They arrived right on time and did not leave a single tape mark on our wall.",
+        "service": "Kids Birthday Theme Decor"
+      },
+      {
+        "name": "Rohit Verma",
+        "location": "Indirapuram, Ghaziabad",
+        "rating": 5,
+        "review": "Ordered the midnight anniversary canopy surprise for my wife. The lighting, rose petals, and balloon ceiling looked straight out of Pinterest. Highly recommended in Ghaziabad!",
+        "service": "Anniversary Cabana Setup"
+      },
+      {
+        "name": "Meenakshi Tyagi",
+        "location": "Crossings Republik, Ghaziabad",
+        "rating": 5,
+        "review": "Super professional team. They managed the entire Welcome Baby decor on just 3 hours notice when we were returning from the hospital. Outstanding service and reasonable price.",
+        "service": "Welcome Baby Decor"
+      },
+      {
+        "name": "Amit Saxena",
+        "location": "Raj Nagar Extension, Ghaziabad",
+        "rating": 5,
+        "review": "Hired them for our new clinic inauguration balloon gate and stage backdrop. Clean finishing, high quality chrome balloons that stayed inflated for 3 days.",
+        "service": "Grand Opening Corporate Decor"
+      }
+    ]
+  }
+}
