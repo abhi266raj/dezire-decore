@@ -57,12 +57,35 @@ Official responsive business website and structured data repository for **Dezire
 
 ```
 .
-├── index.html           # Main semantic HTML5 landing page
+├── index.html           # Main semantic HTML5 landing page with standard event decorator template
 ├── styles.css           # Luxury dark event styling theme with CSS variables & responsive layout
 ├── script.js            # Interactive cost estimator, portfolio filter, FAQ accordion & form logic
 ├── business_data.json   # Machine-readable structured business profile and metadata
+├── assets/
+│   └── images/          # Local sample event decorator images (birthdays, cabanas, haldi, facebook posts)
+│       ├── hero-banner.jpg
+│       ├── about-team.jpg
+│       ├── service-*.jpg
+│       ├── gallery-*.jpg
+│       └── facebook-sample-*.jpg
 └── README.md            # Documentation and links
 ```
+
+---
+
+## 🎨 Event Decorator Template Sections
+- **Sticky Luxury Header & Announcement Bar**: Express 2-hour doorstep setup notice, Facebook profile link, direct calling line, and mobile responsive menu.
+- **Hero Section**: High-converting value proposition, verified Google rating badge (4.9★), and trust highlights.
+- **About Dezire Decore**: Story, local coverage across Mahagunpuram and Indirapuram, and core commitments.
+- **Service Catalog**: Individual cards with starting prices, feature lists, and direct WhatsApp booking.
+- **4-Step How It Works**: Theme Selection -> Upfront Quote -> Express Setup -> Inspection & Celebration.
+- **Filterable Portfolio**: Live gallery showcasing local sample setups (ring arches, cabanas, baby shower clouds, marigold drapes).
+- **Facebook & Social Highlights**: Real social media sample posts and project transformations.
+- **All-Inclusive Pricing Packages**: Silver, Gold (Most Popular), and Platinum tiers.
+- **Interactive Price Estimator**: Instant dynamic calculation with pre-formatted WhatsApp dispatch.
+- **Verified Client Reviews & Testimonials**: Local customer feedback from Google Maps.
+- **FAQ Accordion**: Answers to wall safety, timings, customizations, and service locations.
+- **Location, Contact & Live Google Maps Embed**: Map centered at GPS coordinates `28.6676137, 77.4800782`.
 
 ---
 
