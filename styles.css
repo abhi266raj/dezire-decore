@@ -1438,15 +1438,18 @@ button {
 }
 
 .event-actions-row {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
   margin-top: 14px;
 }
 
 .event-actions-row .btn {
-  flex: 1;
-  font-size: 0.82rem;
-  padding: 10px 12px;
+  font-size: 0.78rem;
+  padding: 8px 6px;
+  justify-content: center;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .quote-policy-text {
@@ -1788,7 +1791,19 @@ button {
 .lightbox-actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+}
+
+.lightbox-channel-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 576px) {
+  .lightbox-channel-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .lightbox-nav-btn {

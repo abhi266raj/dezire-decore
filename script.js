@@ -238,15 +238,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxSource) lightboxSource.textContent = `Verified Source: ${source}`;
     if (lightboxCounter) lightboxCounter.textContent = `${index + 1} of ${items.length}`;
 
+    const lightboxReelBtn = document.getElementById('lightboxReelBtn');
+    const reelUrl = item.getAttribute('data-reel-url') || (sourceUrl && sourceUrl.includes('facebook.com') ? sourceUrl : 'https://www.facebook.com/profile.php?id=61586389556980&sk=reels_tab');
+    if (lightboxReelBtn) {
+      lightboxReelBtn.href = reelUrl;
+    }
+
+    const lightboxProfileBtn = document.getElementById('lightboxProfileBtn');
+    if (lightboxProfileBtn) {
+      lightboxProfileBtn.href = 'https://www.facebook.com/profile.php?id=61586389556980';
+    }
+
     if (lightboxSourceLink) {
       lightboxSourceLink.hidden = false;
-      if (sourceUrl && sourceUrl.includes('facebook.com')) {
-        lightboxSourceLink.href = sourceUrl;
-        lightboxSourceLink.innerHTML = '<i class="fa-brands fa-facebook"></i> Watch Video Reel on Facebook';
-      } else {
-        lightboxSourceLink.href = sourceUrl || GOOGLE_MAPS_LISTING;
-        lightboxSourceLink.innerHTML = '<i class="fa-brands fa-google"></i> View on Google Maps Profile';
-      }
+      const mapsUrl = (sourceUrl && !sourceUrl.includes('facebook.com')) ? sourceUrl : GOOGLE_MAPS_LISTING;
+      lightboxSourceLink.href = mapsUrl;
+      lightboxSourceLink.innerHTML = '<i class="fa-brands fa-google"></i> Google Maps Listing';
     }
 
     if (lightboxWaBtn) {
