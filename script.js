@@ -4,6 +4,97 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Universal WhatsApp App Trigger (Opens App Directly When Installed)
+  const WHATSAPP_PHONE = '918279731933';
+
+  function isMobileDevice() {
+    return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+           (window.innerWidth <= 1024 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
+  }
+
+  function openWhatsApp(customText = '') {
+    const text = customText || 'Hi Dezire Decore! I would like to inquire about event decoration services.';
+    const encoded = encodeURIComponent(text);
+
+    if (isMobileDevice()) {
+      // 1. Mobile: Use direct whatsapp:// scheme to immediately invoke installed WhatsApp app
+      const appScheme = `whatsapp://send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
+      const webFallback = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
+
+      const navStart = Date.now();
+      window.location.href = appScheme;
+
+      // 2. Fallback to web link if app is not installed
+      setTimeout(() => {
+        if (document.hasFocus() || (Date.now() - navStart < 2200)) {
+          window.location.href = webFallback;
+        }
+      }, 1400);
+    } else {
+      // 3. Desktop: open web.whatsapp.com / api.whatsapp.com in new tab
+      const deskUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
+      window.open(deskUrl, '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  // Optimize all WhatsApp links on page load
+  function setupWhatsAppLinks() {
+    const isMobile = isMobileDevice();
+    const waLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"], a.btn-whatsapp, a.float-wa');
+
+    waLinks.forEach(link => {
+      // Strip target="_blank" on mobile so Safari/Chrome doesn't spawn useless blank tabs
+      if (isMobile) {
+        link.removeAttribute('target');
+      }
+
+      // Convert any legacy wa.me link to api.whatsapp.com directly
+      const href = link.getAttribute('href') || '';
+      if (href.includes('wa.me')) {
+        let msg = '';
+        try {
+          const u = new URL(href);
+          msg = u.searchParams.get('text') || '';
+        } catch (e) {
+          const match = href.match(/text=([^&]+)/);
+          if (match) msg = decodeURIComponent(match[1]);
+        }
+        if (msg) {
+          link.setAttribute('data-wa-text', msg);
+          link.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(msg)}`;
+        } else {
+          link.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}`;
+        }
+      }
+    });
+  }
+
+  setupWhatsAppLinks();
+
+  // Delegated Click Listener for All WhatsApp Links & Buttons
+  document.addEventListener('click', (e) => {
+    const waAnchor = e.target.closest('a[href*="wa.me"], a[href*="whatsapp.com"], a[href*="whatsapp://"], a.btn-whatsapp, a.float-wa, #lightboxWaBtn');
+    if (!waAnchor) return;
+
+    // Extract text from data-wa-text or url param or inner text
+    let text = waAnchor.getAttribute('data-wa-text');
+    if (!text) {
+      const href = waAnchor.getAttribute('href') || '';
+      if (href.includes('text=')) {
+        try {
+          const u = new URL(href, window.location.origin);
+          text = u.searchParams.get('text');
+        } catch (err) {
+          const m = href.match(/text=([^&]+)/);
+          if (m) text = decodeURIComponent(m[1]);
+        }
+      }
+    }
+
+    e.preventDefault();
+    openWhatsApp(text || '');
+  });
+
   // 1. Mobile Menu Toggle & Body Scroll Lock (with Body Portal to avoid containing block trap)
   const mobileToggle = document.getElementById('mobileToggle');
   const navMenu = document.getElementById('navMenu');
@@ -194,8 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       msg += `\nHello Dezire Decore! Please share availability and customized pricing for this setup in Ghaziabad.`;
 
-      const waUrl = `https://wa.me/918279731933?text=${encodeURIComponent(msg)}`;
-      window.open(waUrl, '_blank');
+      openWhatsApp(msg);
     });
   }
 
@@ -296,7 +386,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (lightboxWaBtn) {
       const waMsg = `Hi Dezire Decore! I saw "${title}" in your gallery (${category}) and would like to get availability and quotation for my event.`;
-      lightboxWaBtn.href = `https://wa.me/918279731933?text=${encodeURIComponent(waMsg)}`;
+      lightboxWaBtn.setAttribute('data-wa-text', waMsg);
+      lightboxWaBtn.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(waMsg)}`;
     }
 
     if (lightboxModal) {
@@ -414,17 +505,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       msg += `\nPlease provide availability and custom quotation!`;
 
-      const waUrl = `https://wa.me/918279731933?text=${encodeURIComponent(msg)}`;
+      const fallbackUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(msg)}`;
 
       if (feedbackBanner) {
-        feedbackBanner.innerHTML = `<i class="fa-solid fa-circle-check"></i> Redirecting to WhatsApp... If it doesn't open automatically, <a href="${waUrl}" target="_blank" rel="noopener" class="text-gold" style="text-decoration: underline; font-weight: bold;">click here to chat</a>.`;
+        feedbackBanner.innerHTML = `<i class="fa-solid fa-circle-check"></i> Opening WhatsApp... If it doesn't open automatically, <a href="${fallbackUrl}" class="text-gold" style="text-decoration: underline; font-weight: bold;">click here to chat</a>.`;
         feedbackBanner.style.display = 'flex';
       }
 
-      const opened = window.open(waUrl, '_blank');
-      if (!opened) {
-        window.location.href = waUrl;
-      }
+      openWhatsApp(msg);
 
       setTimeout(() => {
         bookingForm.reset();
