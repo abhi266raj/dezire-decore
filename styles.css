@@ -972,6 +972,49 @@ button {
   gap: 16px;
 }
 
+.social-header-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  flex: 1;
+  min-width: 260px;
+}
+
+.social-header-title {
+  font-size: 1.45rem;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.social-header-subtitle {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .social-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .social-header-link {
+    width: 100%;
+    flex: none;
+  }
+  .social-header-title {
+    font-size: 1.25rem;
+  }
+  .social-header-btn-wrap,
+  .social-header-btn-wrap .btn-facebook {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 .social-samples-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

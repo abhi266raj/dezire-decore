@@ -4,7 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 0. Universal WhatsApp App Trigger (Opens App Directly When Installed)
+  // 0. Universal WhatsApp App Trigger (Cross-Platform Android, iOS & Desktop)
   const WHATSAPP_PHONE = '918279731933';
 
   function isMobileDevice() {
@@ -15,25 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function openWhatsApp(customText = '') {
     const text = customText || 'Hi Dezire Decore! I would like to inquire about event decoration services.';
     const encoded = encodeURIComponent(text);
+    const waUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
 
     if (isMobileDevice()) {
-      // 1. Mobile: Use direct whatsapp:// scheme to immediately invoke installed WhatsApp app
-      const appScheme = `whatsapp://send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
-      const webFallback = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
-
-      const navStart = Date.now();
-      window.location.href = appScheme;
-
-      // 2. Fallback to web link if app is not installed
-      setTimeout(() => {
-        if (document.hasFocus() || (Date.now() - navStart < 2200)) {
-          window.location.href = webFallback;
-        }
-      }, 1400);
+      // On Android & iOS mobile browsers, direct URL navigation triggers native WhatsApp app cleanly without ERR_UNKNOWN_URL_SCHEME
+      window.location.href = waUrl;
     } else {
-      // 3. Desktop: open web.whatsapp.com / api.whatsapp.com in new tab
-      const deskUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
-      window.open(deskUrl, '_blank', 'noopener,noreferrer');
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
     }
   }
 
@@ -43,57 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const waLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"], a.btn-whatsapp, a.float-wa');
 
     waLinks.forEach(link => {
-      // Strip target="_blank" on mobile so Safari/Chrome doesn't spawn useless blank tabs
       if (isMobile) {
         link.removeAttribute('target');
-      }
-
-      // Convert any legacy wa.me link to api.whatsapp.com directly
-      const href = link.getAttribute('href') || '';
-      if (href.includes('wa.me')) {
-        let msg = '';
-        try {
-          const u = new URL(href);
-          msg = u.searchParams.get('text') || '';
-        } catch (e) {
-          const match = href.match(/text=([^&]+)/);
-          if (match) msg = decodeURIComponent(match[1]);
-        }
-        if (msg) {
-          link.setAttribute('data-wa-text', msg);
-          link.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(msg)}`;
-        } else {
-          link.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}`;
-        }
+      } else {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
       }
     });
   }
 
   setupWhatsAppLinks();
-
-  // Delegated Click Listener for All WhatsApp Links & Buttons
-  document.addEventListener('click', (e) => {
-    const waAnchor = e.target.closest('a[href*="wa.me"], a[href*="whatsapp.com"], a[href*="whatsapp://"], a.btn-whatsapp, a.float-wa, #lightboxWaBtn');
-    if (!waAnchor) return;
-
-    // Extract text from data-wa-text or url param or inner text
-    let text = waAnchor.getAttribute('data-wa-text');
-    if (!text) {
-      const href = waAnchor.getAttribute('href') || '';
-      if (href.includes('text=')) {
-        try {
-          const u = new URL(href, window.location.origin);
-          text = u.searchParams.get('text');
-        } catch (err) {
-          const m = href.match(/text=([^&]+)/);
-          if (m) text = decodeURIComponent(m[1]);
-        }
-      }
-    }
-
-    e.preventDefault();
-    openWhatsApp(text || '');
-  });
 
   // 1. Mobile Menu Toggle & Body Scroll Lock (with Body Portal to avoid containing block trap)
   const mobileToggle = document.getElementById('mobileToggle');
