@@ -145,6 +145,107 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // 4b. Fast Lightbox Modal Logic
+  const lightboxModal = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+  const lightboxCategory = document.getElementById('lightboxCategory');
+  const lightboxSource = document.getElementById('lightboxSource');
+  const lightboxSourceLink = document.getElementById('lightboxSourceLink');
+  const lightboxWaBtn = document.getElementById('lightboxWaBtn');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  let currentGalleryIndex = 0;
+  const visibleGalleryItems = () => Array.from(document.querySelectorAll('.gallery-item')).filter(el => el.style.display !== 'none');
+
+  function openLightbox(index) {
+    const items = visibleGalleryItems();
+    if (!items.length || index < 0 || index >= items.length) return;
+    currentGalleryIndex = index;
+
+    const item = items[index];
+    const fullImg = item.getAttribute('data-full') || item.querySelector('img')?.src;
+    const title = item.getAttribute('data-title') || item.querySelector('h4')?.textContent;
+    const desc = item.getAttribute('data-desc') || item.querySelector('p')?.textContent;
+    const category = item.getAttribute('data-category-name') || 'Event Decor';
+    const source = item.getAttribute('data-source') || 'Verified Source';
+    const sourceUrl = item.getAttribute('data-source-url') || 'https://www.facebook.com/profile.php?id=61586389556980&sk=reels_tab';
+
+    if (lightboxImg) lightboxImg.src = fullImg;
+    if (lightboxTitle) lightboxTitle.textContent = title;
+    if (lightboxDesc) lightboxDesc.textContent = desc;
+    if (lightboxCategory) lightboxCategory.textContent = category;
+    if (lightboxSource) lightboxSource.textContent = `Source: ${source}`;
+    
+    if (lightboxSourceLink) {
+      lightboxSourceLink.href = sourceUrl;
+      lightboxSourceLink.innerHTML = source.includes('Google') ? 
+        '<i class="fa-brands fa-google"></i> View on Google Maps' : 
+        '<i class="fa-brands fa-facebook"></i> Watch Video Reel on Facebook';
+    }
+
+    if (lightboxWaBtn) {
+      const waMsg = `Hi Dezire Decore! I saw "${title}" in your gallery (${category}) and would like to get availability and quotation for my event.`;
+      lightboxWaBtn.href = `https://wa.me/918279731933?text=${encodeURIComponent(waMsg)}`;
+    }
+
+    if (lightboxModal) {
+      lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeLightbox() {
+    if (lightboxModal) {
+      lightboxModal.classList.remove('active');
+      document.body.style.overflow = '';
+      if (lightboxImg) lightboxImg.src = '';
+    }
+  }
+
+  galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const items = visibleGalleryItems();
+      const idx = items.indexOf(item);
+      openLightbox(idx >= 0 ? idx : 0);
+    });
+  });
+
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxModal) {
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) closeLightbox();
+    });
+  }
+
+  if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const items = visibleGalleryItems();
+      currentGalleryIndex = (currentGalleryIndex - 1 + items.length) % items.length;
+      openLightbox(currentGalleryIndex);
+    });
+  }
+
+  if (lightboxNext) {
+    lightboxNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const items = visibleGalleryItems();
+      currentGalleryIndex = (currentGalleryIndex + 1) % items.length;
+      openLightbox(currentGalleryIndex);
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft' && lightboxPrev) lightboxPrev.click();
+    if (e.key === 'ArrowRight' && lightboxNext) lightboxNext.click();
+  });
+
   // 5. Booking Inquiry Form Handling -> Direct WhatsApp
   const bookingForm = document.getElementById('bookingForm');
   if (bookingForm) {
