@@ -4,10 +4,34 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Menu Toggle & Body Scroll Lock
+  // 1. Mobile Menu Toggle & Body Scroll Lock (with Body Portal to avoid containing block trap)
   const mobileToggle = document.getElementById('mobileToggle');
   const navMenu = document.getElementById('navMenu');
+  const headerContainer = document.querySelector('.header-container');
+  const headerActions = document.querySelector('.header-actions');
   const navLinks = document.querySelectorAll('.nav-link');
+
+  function syncNavLocation() {
+    if (!navMenu) return;
+    if (window.innerWidth <= 1024) {
+      if (navMenu.parentElement !== document.body) {
+        document.body.appendChild(navMenu);
+      }
+    } else {
+      if (headerContainer && navMenu.parentElement !== headerContainer) {
+        if (headerActions) {
+          headerContainer.insertBefore(navMenu, headerActions);
+        } else {
+          headerContainer.appendChild(navMenu);
+        }
+      }
+      closeMobileNav();
+    }
+  }
+
+  // Initial sync
+  syncNavLocation();
+  window.addEventListener('resize', syncNavLocation);
 
   function closeMobileNav() {
     if (navMenu && navMenu.classList.contains('open')) {
@@ -17,9 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function toggleMobileNav() {
+  function toggleMobileNav(e) {
+    if (e) e.stopPropagation();
     if (!navMenu || !mobileToggle) return;
     const willOpen = !navMenu.classList.contains('open');
+    if (willOpen && navMenu.parentElement !== document.body && window.innerWidth <= 1024) {
+      document.body.appendChild(navMenu);
+    }
     navMenu.classList.toggle('open', willOpen);
     mobileToggle.classList.toggle('active', willOpen);
     document.body.classList.toggle('nav-open', willOpen);
@@ -29,8 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileToggle.addEventListener('click', toggleMobileNav);
 
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
         closeMobileNav();
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            setTimeout(() => {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }, 60);
+          }
+        }
       });
     });
 
