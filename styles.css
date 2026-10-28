@@ -261,15 +261,15 @@ button {
 .nav-list {
   display: flex;
   list-style: none;
-  gap: 14px;
+  gap: 22px;
 }
 
 .nav-link {
-  font-size: 0.84rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-muted);
   position: relative;
-  padding: 5px 0;
+  padding: 6px 0;
   white-space: nowrap;
 }
 
@@ -2353,11 +2353,11 @@ button {
   }
 
   .nav-list {
-    gap: 10px;
+    gap: 16px;
   }
 
   .nav-link {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     padding: 4px 0;
   }
 
