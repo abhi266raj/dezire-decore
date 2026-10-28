@@ -4,34 +4,75 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 0. Universal WhatsApp App Trigger (Cross-Platform Android, iOS & Desktop)
+  // 0. Universal Cross-Platform WhatsApp Launcher (Direct App Launch on Android & iOS)
   const WHATSAPP_PHONE = '918279731933';
 
-  function isMobileDevice() {
-    return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-           (window.innerWidth <= 1024 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
-  }
+  const ua = (navigator.userAgent || '') + ' ' + (navigator.vendor || '');
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isMobile = isAndroid || isIOS || window.innerWidth <= 1024;
 
-  function openWhatsApp(customText = '') {
+  /**
+   * Generates the appropriate WhatsApp URL based on OS and browser.
+   * On Android: uses native Android Intent with explicit package com.whatsapp and scheme whatsapp,
+   * along with S.browser_fallback_url. This forces all Android browsers (including Firefox for Android)
+   * to immediately hand off to Android OS and directly launch the installed WhatsApp app, completely
+   * bypassing the browser's "stay in browser" default setting.
+   * If WhatsApp is not installed, Android OS automatically falls back to S.browser_fallback_url.
+   * On iOS: api.whatsapp.com Universal Link opens the native WhatsApp app directly if installed.
+   * On Desktop: standard WhatsApp Web link in a new tab.
+   */
+  function getWhatsAppUrl(customText = '') {
     const text = customText || 'Hi Dezire Decore! I would like to inquire about event decoration services.';
     const encoded = encodeURIComponent(text);
-    const waUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
+    const webFallbackUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
+    const intentUrl = `intent://send?phone=${WHATSAPP_PHONE}&text=${encoded}#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url=${encodeURIComponent(webFallbackUrl)};end;`;
 
-    if (isMobileDevice()) {
-      // On Android & iOS mobile browsers, direct URL navigation triggers native WhatsApp app cleanly without ERR_UNKNOWN_URL_SCHEME
-      window.location.href = waUrl;
+    if (isAndroid) {
+      return intentUrl;
     } else {
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
+      return webFallbackUrl;
     }
   }
 
-  // Optimize all WhatsApp links on page load
+  function openWhatsApp(customText = '') {
+    const targetUrl = getWhatsAppUrl(customText);
+    const text = customText || 'Hi Dezire Decore! I would like to inquire about event decoration services.';
+    const encoded = encodeURIComponent(text);
+    const webFallbackUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encoded}`;
+
+    if (isAndroid) {
+      window.location.href = targetUrl;
+    } else if (isIOS) {
+      window.location.href = webFallbackUrl;
+    } else {
+      window.open(webFallbackUrl, '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  // Optimize and configure all WhatsApp links on page load
   function setupWhatsAppLinks() {
-    const isMobile = isMobileDevice();
-    const waLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp.com"], a.btn-whatsapp, a.float-wa');
+    const waLinks = document.querySelectorAll('a[href*="whatsapp"], a[href*="wa.me"], a[href*="intent://send"], a.btn-whatsapp, a.float-wa');
 
     waLinks.forEach(link => {
-      if (isMobile) {
+      // Preserve any pre-filled text
+      let text = link.getAttribute('data-wa-text');
+      if (!text) {
+        const href = link.getAttribute('href') || '';
+        if (href.includes('text=')) {
+          try {
+            const m = href.match(/text=([^&;#]+)/);
+            if (m) text = decodeURIComponent(m[1]);
+          } catch (e) {}
+        }
+      }
+      if (text) {
+        link.setAttribute('data-wa-text', text);
+      }
+
+      link.href = getWhatsAppUrl(text || '');
+
+      if (isAndroid || isIOS) {
         link.removeAttribute('target');
       } else {
         link.setAttribute('target', '_blank');
@@ -41,6 +82,35 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setupWhatsAppLinks();
+
+  // Delegated click listener ensures fresh URLs & immediate native launch
+  document.addEventListener('click', (e) => {
+    const waLink = e.target.closest('a[href*="whatsapp"], a[href*="wa.me"], a[href*="intent://send"], a.btn-whatsapp, a.float-wa, #lightboxWaBtn');
+    if (!waLink) return;
+
+    let text = waLink.getAttribute('data-wa-text');
+    if (!text) {
+      const href = waLink.getAttribute('href') || '';
+      if (href.includes('text=')) {
+        try {
+          const m = href.match(/text=([^&;#]+)/);
+          if (m) text = decodeURIComponent(m[1]);
+        } catch (err) {}
+      }
+    }
+    const customText = text || 'Hi Dezire Decore! I would like to inquire about event decoration services.';
+
+    if (isAndroid) {
+      waLink.href = getWhatsAppUrl(customText);
+      waLink.removeAttribute('target');
+    } else if (isIOS) {
+      waLink.href = getWhatsAppUrl(customText);
+      waLink.removeAttribute('target');
+    } else {
+      waLink.target = '_blank';
+      waLink.rel = 'noopener noreferrer';
+    }
+  });
 
   // 1. Mobile Menu Toggle & Body Scroll Lock (with Body Portal to avoid containing block trap)
   const mobileToggle = document.getElementById('mobileToggle');
@@ -334,7 +404,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxWaBtn) {
       const waMsg = `Hi Dezire Decore! I saw "${title}" in your gallery (${category}) and would like to get availability and quotation for my event.`;
       lightboxWaBtn.setAttribute('data-wa-text', waMsg);
-      lightboxWaBtn.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(waMsg)}`;
+      lightboxWaBtn.href = getWhatsAppUrl(waMsg);
+      if (isAndroid || isIOS) {
+        lightboxWaBtn.removeAttribute('target');
+      } else {
+        lightboxWaBtn.setAttribute('target', '_blank');
+        lightboxWaBtn.setAttribute('rel', 'noopener noreferrer');
+      }
     }
 
     if (lightboxModal) {
