@@ -1,12 +1,13 @@
 {
   "business": {
     "name": "Dezire Decore - Decoration & Event Planner",
-    "verified_source": "Google Maps Listing & Official Facebook Page",
-    "google_maps_url": "https://www.google.com/maps/place/Dezire+Decore+-+Decoration+%26+Event+Planner/@28.6676114,77.4610269,15z/data=!3m1!5s0x390cf219b78afe93:0x1b75769c5a96f7c4!4m10!1m2!2m1!1sballon+decoration+near+me!3m6!1s0x390cf3f0faf988bb:0xb8de77d788648f0a!8m2!3d28.6676137!4d77.4800782",
-    "google_reviews_count": 46,
-    "google_reviews_url": "https://www.google.com/maps/place/Dezire+Decore+-+Decoration+%26+Event+Planner/@28.6676137,77.4800782,17z/data=!4m8!3m7!1s0x390cf3f0faf988bb:0xb8de77d788648f0a!8m2!3d28.6676137!4d77.4800782!9m1!1b1!16s%2Fg%2F11ydsvkggp",
+    "verified_sources": [
+      "https://www.google.com/maps/place/Dezire+Decore+-+Decoration+%26+Event+Planner/@28.6676114,77.4610269,15z/data=!3m1!5s0x390cf219b78afe93:0x1b75769c5a96f7c4!4m10!1m2!2m1!1sballon+decoration+near+me!3m6!1s0x390cf3f0faf988bb:0xb8de77d788648f0a!8m2!3d28.6676137!4d77.4800782",
+      "https://www.facebook.com/profile.php?id=61586389556980&sk=reels_tab"
+    ],
+    "google_maps_reviews_url": "https://www.google.com/maps/place/Dezire+Decore+-+Decoration+%26+Event+Planner/@28.6676137,77.4800782,17z/data=!4m8!3m7!1s0x390cf3f0faf988bb:0xb8de77d788648f0a!8m2!3d28.6676137!4d77.4800782!9m1!1b1!16s%2Fg%2F11ydsvkggp",
     "facebook_page_url": "https://www.facebook.com/profile.php?id=61586389556980",
-    "facebook_reels_url": "https://www.facebook.com/profile.php?id=61586389556980&sk=reels_tab",
+    "facebook_reels_tab_url": "https://www.facebook.com/profile.php?id=61586389556980&sk=reels_tab",
     "logo_asset": "assets/images/facebook-logo.jpg",
     "place_id": "0x390cf3f0faf988bb:0xb8de77d788648f0a",
     "cid": "13321151609355177738",
@@ -18,8 +19,7 @@
       "primary_phone": "+91 82797 31933",
       "secondary_phone": "+91 95553 13027",
       "whatsapp": "+918279731933",
-      "whatsapp_link": "https://wa.me/918279731933",
-      "email": "deziredecore.events@gmail.com"
+      "whatsapp_link": "https://wa.me/918279731933"
     },
     "location": {
       "address": "Second Floor, Krishna Tanushree Kunj, Plot R1, Near Mahagunpuram, Raispur",
@@ -35,8 +35,59 @@
       "3) Birthday Party Decoration",
       "4) Anniversary & Romantic Surprises",
       "5) Baby Shower & Welcome Baby",
-      "6) Haldi & Traditional Functions",
-      "7) Corporate Events & Grand Openings"
+      "6) Haldi & Traditional Functions"
+    ],
+    "crawled_direct_reels": [
+      {
+        "reel_id": "2063160304377237",
+        "url": "https://www.facebook.com/reel/2063160304377237/",
+        "local_image": "assets/images/reels/reel-1.jpg"
+      },
+      {
+        "reel_id": "29659925743593267",
+        "url": "https://www.facebook.com/reel/29659925743593267/",
+        "local_image": "assets/images/reels/reel-2.jpg"
+      },
+      {
+        "reel_id": "1395880162570768",
+        "url": "https://www.facebook.com/reel/1395880162570768/",
+        "local_image": "assets/images/reels/reel-3.jpg"
+      },
+      {
+        "reel_id": "1449663507112205",
+        "url": "https://www.facebook.com/reel/1449663507112205/",
+        "local_image": "assets/images/reels/reel-4.jpg"
+      },
+      {
+        "reel_id": "39425234773787886",
+        "url": "https://www.facebook.com/reel/39425234773787886/",
+        "local_image": "assets/images/reels/reel-5.jpg"
+      },
+      {
+        "reel_id": "1778955269817385",
+        "url": "https://www.facebook.com/reel/1778955269817385/",
+        "local_image": "assets/images/reels/reel-6.jpg"
+      },
+      {
+        "reel_id": "2816737288698868",
+        "url": "https://www.facebook.com/reel/2816737288698868/",
+        "local_image": "assets/images/reels/reel-7.jpg"
+      },
+      {
+        "reel_id": "1611335570597093",
+        "url": "https://www.facebook.com/reel/1611335570597093/",
+        "local_image": "assets/images/reels/reel-8.jpg"
+      },
+      {
+        "reel_id": "4406611399589570",
+        "url": "https://www.facebook.com/reel/4406611399589570/",
+        "local_image": "assets/images/reels/reel-9.jpg"
+      },
+      {
+        "reel_id": "1448699267099232",
+        "url": "https://www.facebook.com/reel/1448699267099232/",
+        "local_image": "assets/images/reels/reel-10.jpg"
+      }
     ],
     "pricing_policy": "Custom quotation based on customer event requirements and venue dimensions (No arbitrary/made-up prices)."
   }

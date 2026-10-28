@@ -890,7 +890,7 @@ button {
 
 .service-img-wrapper {
   position: relative;
-  height: 220px;
+  height: 260px;
   overflow: hidden;
 }
 
@@ -899,6 +899,30 @@ button {
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
+}
+
+.reel-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: rgba(24, 119, 242, 0.88);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  transition: var(--transition);
+  z-index: 2;
+}
+
+.service-card:hover .reel-play-btn, .gallery-item:hover .reel-play-btn {
+  transform: translate(-50%, -50%) scale(1.15);
+  background: #0d65d9;
 }
 
 .service-card:hover .service-img-wrapper img {

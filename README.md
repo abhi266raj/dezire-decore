@@ -3,7 +3,7 @@
 Official responsive business website and verified business data repository for **Dezire Decore - Decoration & Event Planner**, based in Ghaziabad, Uttar Pradesh, serving Delhi-NCR.
 
 🌐 **Live Website (GitHub Pages):** [https://abhi266raj.github.io/dezire-decore/](https://abhi266raj.github.io/dezire-decore/)  
-📍 **Google Maps Profile (46 Reviews):** [Dezire Decore on Google Maps (46 Reviews)](https://www.google.com/maps/place/Dezire+Decore+-+Decoration+%26+Event+Planner/@28.6676137,77.4800782,17z/data=!4m8!3m7!1s0x390cf3f0faf988bb:0xb8de77d788648f0a!8m2!3d28.6676137!4d77.4800782!9m1!1b1!16s%2Fg%2F11ydsvkggp)  
+📍 **Google Maps Profile & Reviews:** [Dezire Decore on Google Maps](https://www.google.com/maps/place/Dezire+Decore+-+Decoration+%26+Event+Planner/@28.6676137,77.4800782,17z/data=!4m8!3m7!1s0x390cf3f0faf988bb:0xb8de77d788648f0a!8m2!3d28.6676137!4d77.4800782!9m1!1b1!16s%2Fg%2F11ydsvkggp)  
 📱 **Official Facebook Page & Reels:** [Dezire Decore Facebook Reels Tab](https://www.facebook.com/profile.php?id=61586389556980&sk=reels_tab)
 
 ---
@@ -16,7 +16,8 @@ All details and offerings are cross-verified directly with the Google Maps busin
 - **Category:** Event Planner / Balloon Decoration & Party Stylist
 - **Official Facebook Page:** [https://www.facebook.com/profile.php?id=61586389556980](https://www.facebook.com/profile.php?id=61586389556980)
 - **Official Logo:** Extracted directly from Facebook page (`assets/images/facebook-logo.jpg`)
-- **Google Reviews Count:** **46 Reviews** on Google Maps
+- **Real Event Photos:** Crawled directly from Facebook video reels (`assets/images/reels/reel-1.jpg` to `reel-10.jpg`)
+- **Direct Event Reel Links:** Every service card links directly to its specific video reel URL on Facebook.
 - **Registered Google Maps Address:** Second Floor, Krishna Tanushree Kunj, Plot R1, Near Mahagunpuram, Raispur, Ghaziabad, Uttar Pradesh — 201002
 - **Branch Office:** F-39, Arora Shoppers Park, Shakti Khand II, Indirapuram, Ghaziabad, UP — 201014
 - **Coordinates:** `28.6676137° N, 77.4800782° E`
@@ -29,23 +30,23 @@ All details and offerings are cross-verified directly with the Google Maps busin
 
 ## 🎈 Verified Services (From Facebook Page Bio & Google Maps)
 
-1. **Balloon Decoration** (Pastel, chrome, metallic arches, organic garlands, number foils)
-2. **Flower Decoration** (Marigold drops, fresh/artificial floral backdrops, brass urli styling)
-3. **Birthday Party Decoration** (Theme backdrops, circular ring arches, LED neon signs)
-4. **Anniversary & Romantic Surprises** (Teepee cabana setups, fairy string lights, rose petals)
-5. **Baby Shower & Welcome Baby** (Cloud balloons, 'Oh Baby' neon signs, pastel palettes)
-6. **Haldi, Mehndi & Traditional Functions** (Yellow drapes, floral rings, festive ceremonial setups)
-7. **Corporate Events & Grand Openings** (Store entrance balloon arches, ribbon-cutting setups)
+1. **Balloon Decoration** (Direct Reel: [Watch on Facebook](https://www.facebook.com/reel/1395880162570768/))
+2. **Flower Decoration** (Direct Reel: [Watch on Facebook](https://www.facebook.com/reel/1449663507112205/))
+3. **Birthday Party Decoration** (Direct Reel: [Watch on Facebook](https://www.facebook.com/reel/39425234773787886/))
+4. **Anniversary & Romantic Surprises** (Direct Reel: [Watch on Facebook](https://www.facebook.com/reel/1778955269817385/))
+5. **Baby Shower & Welcome Baby** (Direct Reel: [Watch on Facebook](https://www.facebook.com/reel/2816737288698868/))
+6. **Haldi & Traditional Functions** (Direct Reel: [Watch on Facebook](https://www.facebook.com/reel/1611335570597093/))
 
 ---
 
-## 🌟 Website Features
+## 🌟 Key Features
 
-- **Facebook Logo & Video Links:** Official profile logo used as brand mark; all event cards link directly to Facebook Reels (`sk=reels_tab`) for real video footage.
-- **WhatsApp-First Contact:** Every contact touchpoint opens direct WhatsApp communication with pre-formatted inquiry text.
-- **Google Maps 46 Reviews Banner:** Prominently displays the 46 Google reviews with a direct link to the Google Maps review tab.
-- **No Out-of-Box Made-Up Pricing:** Transparent "Custom Quote / Inquire on WhatsApp" model with zero fictitious figures.
-- **Live Google Maps Embed:** Interactive responsive map centered at coordinates `28.6676137, 77.4800782`.
+- **No Hardcoded Review Numbers:** Generic Google Maps review integration linking directly to live reviews and ratings.
+- **No Unverified Event Setups:** Removed arbitrary setup tiers.
+- **Direct Reel Links:** Rather than a generic profile link, event cards link directly to specific Facebook reels.
+- **WhatsApp-First Contact:** Every contact action opens direct WhatsApp communication.
+- **100% Crawled Authentic Visuals:** Only the logo and real video thumbnails from Facebook reels are used.
+- **Live Google Maps Embed:** Centered at coordinates `28.6676137, 77.4800782`.
 
 ---
 
@@ -53,16 +54,15 @@ All details and offerings are cross-verified directly with the Google Maps busin
 
 ```
 .
-├── index.html           # Main semantic landing page with verified details & Facebook integration
-├── styles.css           # Responsive modern styling with Facebook logo & buttons
-├── script.js            # Client logic for mobile nav, filters, and direct WhatsApp dispatch
-├── business_data.json   # Machine-readable verified profile data
+├── index.html           # Main semantic landing page with verified details & direct reel links
+├── styles.css           # Responsive modern styling with Facebook logo, reel cards & buttons
+├── script.js            # Client logic for mobile nav and direct WhatsApp dispatch
+├── business_data.json   # Machine-readable verified profile data and crawled direct reels
 ├── assets/
 │   └── images/
 │       ├── facebook-logo.jpg      # Official logo fetched from Facebook page
-│       ├── hero-banner.jpg        # Hero setup image
-│       ├── service-*.jpg          # Service category samples
-│       └── gallery-*.jpg          # Setup format visual samples
+│       └── reels/                 # Real event thumbnails crawled from Facebook reels
+│           ├── reel-1.jpg to reel-10.jpg
 └── README.md            # Verified business documentation and links
 ```
 
