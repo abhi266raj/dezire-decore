@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const desc = item.getAttribute('data-desc') || item.querySelector('p')?.textContent;
     const category = item.getAttribute('data-category-name') || 'Event Decor';
     const source = item.getAttribute('data-source') || 'Verified Source';
-    const sourceUrl = item.getAttribute('data-source-url') || 'https://www.facebook.com/profile.php?id=61586389556980&sk=reels_tab';
+    const sourceUrl = item.getAttribute('data-source-url');
 
     if (lightboxImg) lightboxImg.src = fullImg;
     if (lightboxTitle) lightboxTitle.textContent = title;
@@ -181,10 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxSource) lightboxSource.textContent = `Source: ${source}`;
     
     if (lightboxSourceLink) {
-      lightboxSourceLink.href = sourceUrl;
-      lightboxSourceLink.innerHTML = source.includes('Google') ? 
-        '<i class="fa-brands fa-google"></i> View on Google Maps' : 
-        '<i class="fa-brands fa-facebook"></i> Watch Video Reel on Facebook';
+      lightboxSourceLink.hidden = !sourceUrl;
+      if (sourceUrl) {
+        lightboxSourceLink.href = sourceUrl;
+        lightboxSourceLink.innerHTML = '<i class="fa-brands fa-facebook"></i> Watch matching event reel';
+      } else {
+        lightboxSourceLink.removeAttribute('href');
+      }
     }
 
     if (lightboxWaBtn) {

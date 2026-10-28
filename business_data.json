@@ -9,7 +9,7 @@
     "google_maps_directions_url": "https://www.google.com/maps/dir//28.6676137,77.4800782/@28.6676137,77.4800782,15z",
     "facebook_page_url": "https://www.facebook.com/profile.php?id=61586389556980",
     "facebook_reels_tab_url": "https://www.facebook.com/profile.php?id=61586389556980&sk=reels_tab",
-    "logo_asset": "assets/images/facebook-logo.jpg",
+    "logo_asset": "assets/brand/logo/default.jpg",
     "place_id": "0x390cf3f0faf988bb:0xb8de77d788648f0a",
     "cid": "13321151609355177738",
     "coordinates": {
@@ -42,54 +42,62 @@
       {
         "reel_id": "2063160304377237",
         "url": "https://www.facebook.com/reel/2063160304377237/",
-        "local_image": "assets/images/reels/reel-1.jpg"
+        "local_image": null
       },
       {
         "reel_id": "29659925743593267",
         "url": "https://www.facebook.com/reel/29659925743593267/",
-        "local_image": "assets/images/reels/reel-2.jpg"
+        "local_image": null
       },
       {
         "reel_id": "1395880162570768",
         "url": "https://www.facebook.com/reel/1395880162570768/",
-        "local_image": "assets/images/reels/reel-3.jpg"
+        "local_image": null
       },
       {
         "reel_id": "1449663507112205",
         "url": "https://www.facebook.com/reel/1449663507112205/",
-        "local_image": "assets/images/reels/reel-4.jpg"
+        "local_image": null
       },
       {
         "reel_id": "39425234773787886",
         "url": "https://www.facebook.com/reel/39425234773787886/",
-        "local_image": "assets/images/reels/reel-5.jpg"
+        "local_image": null
       },
       {
         "reel_id": "1778955269817385",
         "url": "https://www.facebook.com/reel/1778955269817385/",
-        "local_image": "assets/images/reels/reel-6.jpg"
+        "local_image": null
       },
       {
         "reel_id": "2816737288698868",
         "url": "https://www.facebook.com/reel/2816737288698868/",
-        "local_image": "assets/images/reels/reel-7.jpg"
+        "local_image": null
       },
       {
         "reel_id": "1611335570597093",
         "url": "https://www.facebook.com/reel/1611335570597093/",
-        "local_image": "assets/images/reels/reel-8.jpg"
+        "local_image": null
       },
       {
         "reel_id": "4406611399589570",
         "url": "https://www.facebook.com/reel/4406611399589570/",
-        "local_image": "assets/images/reels/reel-9.jpg"
+        "local_image": null
       },
       {
         "reel_id": "1448699267099232",
         "url": "https://www.facebook.com/reel/1448699267099232/",
-        "local_image": "assets/images/reels/reel-10.jpg"
+        "local_image": null
       }
     ],
-    "pricing_policy": "Custom quotation based on customer event requirements and venue dimensions (No arbitrary/made-up prices)."
+    "pricing_policy": "Custom quotation based on customer event requirements and venue dimensions (No arbitrary/made-up prices).",
+    "event_photo_assets": [
+      "assets/event/birthday/default.jpg",
+      "assets/event/birthday-sequin/default.jpg",
+      "assets/event/birthday-rose-gold/default.jpg",
+      "assets/event/baby-shower/default.jpg",
+      "assets/event/baby-shower-kriti/default.jpg",
+      "assets/event/baby-shower-themed/default.jpg"
+    ]
   }
 }
