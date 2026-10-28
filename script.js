@@ -1,6 +1,6 @@
 /**
  * Dezire Decore - Decoration & Event Planner
- * Interactive Client Logic
+ * Verified Client Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Header Scroll Effect & Active Nav Link Highlight
+  // 2. Header Scroll Effect
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -33,92 +33,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. Interactive Price Estimator
+  // 3. Custom Quote Request Formulator (Zero made-up pricing)
   const occasionChips = document.querySelectorAll('#occasionChips .chip');
   const venueSelect = document.getElementById('venueSelect');
   const addonInputs = document.querySelectorAll('.addon-input');
   
   const occasionText = document.getElementById('selectedOccasionText');
-  const occasionPrice = document.getElementById('selectedOccasionPrice');
-  const venueRow = document.getElementById('venueRow');
   const venueText = document.getElementById('selectedVenueText');
-  const venuePrice = document.getElementById('selectedVenuePrice');
   const addonsRow = document.getElementById('addonsSummaryRow');
   const addonsText = document.getElementById('selectedAddonsText');
-  const addonsPrice = document.getElementById('selectedAddonsPrice');
-  const totalAmount = document.getElementById('calculatedTotal');
   const bookCalculatedBtn = document.getElementById('bookCalculatedBtn');
 
-  let currentOccasion = {
-    name: 'Birthday Party',
-    cost: 999
-  };
+  let currentOccasionName = 'Birthday Party';
 
-  function updateEstimator() {
-    let total = currentOccasion.cost;
-    occasionText.textContent = currentOccasion.name;
-    occasionPrice.textContent = `₹${currentOccasion.cost.toLocaleString('en-IN')}`;
+  function updateInquirySummary() {
+    if (occasionText) occasionText.textContent = currentOccasionName;
 
     // Venue
-    const selectedVenueOpt = venueSelect.options[venueSelect.selectedIndex];
-    const venueCost = parseInt(selectedVenueOpt.value, 10) || 0;
-    const venueLabel = selectedVenueOpt.getAttribute('data-label') || 'Standard Room';
-
-    if (venueCost > 0) {
-      venueRow.style.display = 'flex';
-      venueText.textContent = venueLabel;
-      venuePrice.textContent = `+₹${venueCost.toLocaleString('en-IN')}`;
-      total += venueCost;
-    } else {
-      venueRow.style.display = 'none';
+    if (venueSelect && venueText) {
+      venueText.textContent = venueSelect.value;
     }
 
-    // Addons
-    let addonsTotal = 0;
+    // Elements
     const selectedAddonTitles = [];
     addonInputs.forEach(input => {
       if (input.checked) {
-        addonsTotal += parseInt(input.value, 10);
         selectedAddonTitles.push(input.getAttribute('data-title'));
       }
     });
 
-    if (addonsTotal > 0) {
-      addonsRow.style.display = 'flex';
-      addonsText.textContent = selectedAddonTitles.join(', ');
-      addonsPrice.textContent = `+₹${addonsTotal.toLocaleString('en-IN')}`;
-      total += addonsTotal;
-    } else {
-      addonsRow.style.display = 'none';
+    if (addonsRow && addonsText) {
+      if (selectedAddonTitles.length > 0) {
+        addonsRow.style.display = 'flex';
+        addonsText.textContent = selectedAddonTitles.join(', ');
+      } else {
+        addonsRow.style.display = 'none';
+      }
     }
-
-    totalAmount.textContent = total.toLocaleString('en-IN');
   }
 
-  // Event Listeners for Estimator
+  // Event Listeners for Inquiry Summary
   occasionChips.forEach(chip => {
     chip.addEventListener('click', () => {
       occasionChips.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
-      currentOccasion.name = chip.getAttribute('data-name');
-      currentOccasion.cost = parseInt(chip.getAttribute('data-cost'), 10);
-      updateEstimator();
+      currentOccasionName = chip.getAttribute('data-name');
+      updateInquirySummary();
     });
   });
 
   if (venueSelect) {
-    venueSelect.addEventListener('change', updateEstimator);
+    venueSelect.addEventListener('change', updateInquirySummary);
   }
 
   addonInputs.forEach(input => {
-    input.addEventListener('change', updateEstimator);
+    input.addEventListener('change', updateInquirySummary);
   });
 
-  // 1-Click WhatsApp Booking from Estimator
+  // 1-Click WhatsApp Quote Request
   if (bookCalculatedBtn) {
     bookCalculatedBtn.addEventListener('click', () => {
-      const selectedVenueOpt = venueSelect.options[venueSelect.selectedIndex];
-      const venueLabel = selectedVenueOpt.getAttribute('data-label') || 'Living Room';
+      const venueLabel = venueSelect ? venueSelect.value : 'Standard Venue';
       
       const selectedAddonTitles = [];
       addonInputs.forEach(input => {
@@ -127,16 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      const total = totalAmount.textContent;
-
-      let msg = `🎉 *Dezire Decore - Custom Booking Request* 🎉\n\n`;
-      msg += `📌 *Occasion:* ${currentOccasion.name}\n`;
-      msg += `🏠 *Venue Scale:* ${venueLabel}\n`;
+      let msg = `✨ *Dezire Decore - Event Quote Request* ✨\n\n`;
+      msg += `📌 *Occasion:* ${currentOccasionName}\n`;
+      msg += `🏠 *Venue Type:* ${venueLabel}\n`;
       if (selectedAddonTitles.length > 0) {
-        msg += `✨ *Add-ons Chosen:* ${selectedAddonTitles.join(', ')}\n`;
+        msg += `🎈 *Preferred Elements:* ${selectedAddonTitles.join(', ')}\n`;
       }
-      msg += `💰 *Estimated Total:* ₹${total}\n\n`;
-      msg += `Hi Dezire Decore team, I'd like to check date availability for this setup in Ghaziabad!`;
+      msg += `\nHello Dezire Decore! Please share availability and customized pricing for this setup in Ghaziabad.`;
 
       const waUrl = `https://wa.me/918279731933?text=${encodeURIComponent(msg)}`;
       window.open(waUrl, '_blank');
@@ -173,31 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. FAQ Accordion Toggle
-  const faqQuestions = document.querySelectorAll('.faq-question');
-
-  faqQuestions.forEach(question => {
-    question.addEventListener('click', () => {
-      const item = question.parentElement;
-      const answer = item.querySelector('.faq-answer');
-      const isOpen = item.classList.contains('active');
-
-      // Close all
-      document.querySelectorAll('.faq-item').forEach(otherItem => {
-        otherItem.classList.remove('active');
-        const otherAnswer = otherItem.querySelector('.faq-answer');
-        if (otherAnswer) otherAnswer.style.maxHeight = null;
-      });
-
-      // Toggle clicked
-      if (!isOpen) {
-        item.classList.add('active');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    });
-  });
-
-  // 6. Booking Inquiry Form Handling -> WhatsApp Dispatch
+  // 5. Booking Inquiry Form Handling -> Direct WhatsApp
   const bookingForm = document.getElementById('bookingForm');
   if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
@@ -217,9 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
       msg += `🎈 *Occasion:* ${category}\n`;
       msg += `📍 *Delivery Location:* ${location}\n`;
       if (notes) {
-        msg += `📝 *Notes/Theme Request:* ${notes}\n`;
+        msg += `📝 *Theme / Request:* ${notes}\n`;
       }
-      msg += `\nPlease confirm decorator availability!`;
+      msg += `\nPlease provide availability and custom quotation!`;
 
       const waUrl = `https://wa.me/918279731933?text=${encodeURIComponent(msg)}`;
       window.open(waUrl, '_blank');
@@ -227,12 +175,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Dynamic Year
+  // 6. Dynamic Year
   const yearSpan = document.getElementById('currentYear');
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-  // Initial estimator calculation
-  updateEstimator();
+  // Initialize summary
+  updateInquirySummary();
 });

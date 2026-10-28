@@ -1,55 +1,51 @@
 # Dezire Decore - Decoration & Event Planner 🎈✨
 
-Official responsive business website and structured data repository for **Dezire Decore - Decoration & Event Planner**, based in Ghaziabad, Uttar Pradesh.
+Official responsive business website and verified business data repository for **Dezire Decore - Decoration & Event Planner**, based in Ghaziabad, Uttar Pradesh.
 
 🌐 **Live Website (GitHub Pages):** [https://abhi266raj.github.io/dezire-decore/](https://abhi266raj.github.io/dezire-decore/)  
 📍 **Google Maps Profile:** [Dezire Decore on Google Maps](https://www.google.com/maps/place/Dezire+Decore+-+Decoration+%26+Event+Planner/@28.6676114,77.4610269,15z/data=!3m1!5s0x390cf219b78afe93:0x1b75769c5a96f7c4!4m10!1m2!2m1!1sballoon+decoration+near+me!3m6!1s0x390cf3f0faf988bb:0xb8de77d788648f0a!8m2!3d28.6676137!4d77.4800782)
 
 ---
 
-## 🏢 Business Overview
+## 🏢 Verified Business Information
+
+All details correspond directly to verified Google Maps and local business registration records:
 
 - **Business Name:** Dezire Decore - Decoration & Event Planner
 - **Category:** Event Planner / Balloon Stylist & Party Decorator
-- **Rating:** 4.9 / 5.0 (Google Maps Reviews)
-- **Primary Studio Address:** Second Floor, Krishna Tanushree Kunj, Plot R1, Near Mahagunpuram, Raispur, Ghaziabad, Uttar Pradesh — 201002
-- **Branch Office:** F-39, Arora Shoppers Park, Shakti Khand II, Indirapuram, Ghaziabad, UP — 201014
+- **Registered Google Maps Address:** Second Floor, Krishna Tanushree Kunj, Plot R1, Near Mahagunpuram, Raispur, Ghaziabad, Uttar Pradesh — 201002
+- **Associated Branch Office:** F-39, Arora Shoppers Park, Shakti Khand II, Indirapuram, Ghaziabad, UP — 201014
 - **Coordinates:** `28.6676137° N, 77.4800782° E`
-- **Direct Contact:** `+91 82797 31933` / `+91 95553 13027`
-- **WhatsApp Support:** `+91 82797 31933` (24/7 Booking & Inquiries)
-- **Service Coverage:** Mahagunpuram, Indirapuram, Crossings Republik, Raj Nagar Extension, Siddharth Vihar, Vaishali, Vasundhara, Govindpuram, Kavi Nagar, and greater Delhi NCR.
+- **Place CID:** `13321151609355177738`
+- **Telephone Lines:** `+91 82797 31933` / `+91 95553 13027`
+- **Direct WhatsApp:** `+91 82797 31933`
+- **Operating Hours:** Monday – Sunday: 8:00 AM – 10:00 PM
+- **Service Areas:** Mahagunpuram, Raispur, Indirapuram, Crossings Republik, Raj Nagar Extension, Siddharth Vihar, Vaishali, Vasundhara, Govindpuram, Kavi Nagar, and wider Delhi NCR.
+- **Pricing Policy:** Transparent custom quotation based on individual customer theme, venue scale, and balloon styling preferences (no arbitrary or made-up fixed pricing).
 
 ---
 
-## 🌟 Key Website Features
+## 🌟 Website Features
 
-1. **Interactive Decor Cost Estimator:**
-   - Real-time quote generation based on occasion, venue scale, and add-on upgrades (Circular ring arch, neon lights, cold pyro sparklers, mascot cutouts).
-   - Generates a pre-formatted 1-click booking request straight to WhatsApp.
-2. **Direct WhatsApp & Phone Integration:**
+1. **Custom Quote & Availability Generator:**
+   - Customers select event occasion (Birthday, Anniversary, Baby Shower, Haldi, Corporate, Car Boot) and venue scale.
+   - Formulates a pre-filled, customized booking inquiry sent directly to the decorator on WhatsApp.
+2. **Direct Contact & Inquiry Form:**
    - Quick inquiry form with instant WhatsApp dispatch.
-   - Persistent floating WhatsApp and call buttons for high-conversion customer inquiries.
-3. **Curated Services Showcase:**
+   - Persistent floating WhatsApp and direct call buttons.
+3. **Core Services Catalog:**
    - Birthday Balloon Styling
-   - Romantic & Anniversary Surprises (Canopy & Cabana setups)
+   - Anniversary & Romantic Cabana Setups
    - Baby Shower & Welcome Baby Decor
-   - Haldi, Mehndi & Ring Ceremony
-   - Corporate Events & Grand Openings
-   - Midnight Car Boot Surprises
-4. **Transparent Value Packages:**
-   - Silver Starter (₹999)
-   - Gold Premium (₹2,499 - Most Popular)
-   - Platinum Royal (₹4,999)
-5. **Interactive Portfolio Gallery:**
-   - Filterable tabs by event category with smooth animations.
-6. **Trust Badges & USPs:**
-   - Zero Wall-Damage Guarantee (freestanding frames & residue-free tape).
-   - 2-Hour Express Setup speed.
-   - Pay after setup satisfaction.
-7. **Embedded Google Maps & Directions:**
-   - Live interactive map embed centered directly at `28.6676137, 77.4800782` near Mahagunpuram with one-click driving directions.
-8. **Structured Data:**
-   - Contains `business_data.json` with all verified metadata, packages, contacts, and customer reviews.
+   - Traditional Haldi & Mehndi Styling
+   - Corporate Store Openings & Stage Decor
+   - Car Trunk Midnight Surprises
+4. **Visual Style Samples:**
+   - Sample images stored locally in `assets/images/` representing standard event styling formats.
+5. **Verified Google Maps Profile & Live Map:**
+   - Responsive Google Maps embed centered directly at `28.6676137, 77.4800782` near Mahagunpuram with one-click directions.
+6. **Structured Data:**
+   - Machine-readable `business_data.json` containing only verified business details.
 
 ---
 
@@ -57,41 +53,18 @@ Official responsive business website and structured data repository for **Dezire
 
 ```
 .
-├── index.html           # Main semantic HTML5 landing page with standard event decorator template
-├── styles.css           # Luxury dark event styling theme with CSS variables & responsive layout
-├── script.js            # Interactive cost estimator, portfolio filter, FAQ accordion & form logic
-├── business_data.json   # Machine-readable structured business profile and metadata
+├── index.html           # Main semantic HTML5 landing page
+├── styles.css           # Modern dark luxury theme with responsive CSS grid & variables
+├── script.js            # Interactive quote request & WhatsApp dispatch logic
+├── business_data.json   # Machine-readable verified business profile
 ├── assets/
-│   └── images/          # Local sample event decorator images (birthdays, cabanas, haldi, facebook posts)
-│       ├── hero-banner.jpg
-│       ├── about-team.jpg
-│       ├── service-*.jpg
-│       ├── gallery-*.jpg
-│       └── facebook-sample-*.jpg
-└── README.md            # Documentation and links
+│   └── images/          # Local sample event decorator images
+└── README.md            # Verified business documentation and links
 ```
 
 ---
 
-## 🎨 Event Decorator Template Sections
-- **Sticky Luxury Header & Announcement Bar**: Express 2-hour doorstep setup notice, Facebook profile link, direct calling line, and mobile responsive menu.
-- **Hero Section**: High-converting value proposition, verified Google rating badge (4.9★), and trust highlights.
-- **About Dezire Decore**: Story, local coverage across Mahagunpuram and Indirapuram, and core commitments.
-- **Service Catalog**: Individual cards with starting prices, feature lists, and direct WhatsApp booking.
-- **4-Step How It Works**: Theme Selection -> Upfront Quote -> Express Setup -> Inspection & Celebration.
-- **Filterable Portfolio**: Live gallery showcasing local sample setups (ring arches, cabanas, baby shower clouds, marigold drapes).
-- **Facebook & Social Highlights**: Real social media sample posts and project transformations.
-- **All-Inclusive Pricing Packages**: Silver, Gold (Most Popular), and Platinum tiers.
-- **Interactive Price Estimator**: Instant dynamic calculation with pre-formatted WhatsApp dispatch.
-- **Verified Client Reviews & Testimonials**: Local customer feedback from Google Maps.
-- **FAQ Accordion**: Answers to wall safety, timings, customizations, and service locations.
-- **Location, Contact & Live Google Maps Embed**: Map centered at GPS coordinates `28.6676137, 77.4800782`.
-
----
-
 ## 🚀 Running Locally
-
-No npm or external build step required! You can serve the site with any static server:
 
 ```bash
 # Python 3
